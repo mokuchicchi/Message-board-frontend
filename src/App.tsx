@@ -1,9 +1,10 @@
-import { MainLayout } from './pages/MainLayout';
+import './App.css';
+import { Layout } from './components/Layout';
 
 function App() {
 	return (
 		<div className='App'>
-			<MainLayout />
+			<Layout />
 		</div>
 	);
 }
