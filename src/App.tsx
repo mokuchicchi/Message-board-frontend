@@ -1,10 +1,15 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Layout } from './components/Layout';
+import { SignInPage } from './pages/SignInPage';
+import { MainPage } from './pages/MainPage';
 
 function App() {
 	return (
 		<div className='App'>
-			<Layout />
+			<Routes>
+				<Route path='/' element={<SignInPage />} />
+				<Route path='/main' element={<MainPage />} />
+			</Routes>
 		</div>
 	);
 }
