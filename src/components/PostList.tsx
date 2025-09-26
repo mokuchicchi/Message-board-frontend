@@ -25,7 +25,7 @@ export const PostList = () => {
 
 	useEffect(() => {
 		getPostList();
-	});
+	}, []);
 
 	return (
 		<SPostList>

@@ -15,7 +15,7 @@ export const Header = () => {
 			setUserName(user.name);
 		};
 		myGetUser();
-	});
+	}, []);
 
 	const onClickLogout = () => {
 		setUserInfo({ token: '', id: 0 });
