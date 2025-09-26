@@ -12,5 +12,6 @@ export const Contents = () => {
 const SContents = styled.div`
 	width: 80%;
 	height: 100%;
-	border: 2px solid pink;
+	background-color: aliceblue;
+	padding: 8px;
 `;

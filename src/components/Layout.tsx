@@ -1,24 +1,11 @@
-import styled from 'styled-components';
 import { Header } from '../components/Header';
-import { SideBar } from '../components/SideBar';
-import { Contents } from './Contents';
+import { Body } from './Body';
 
 export const Layout = () => {
 	return (
 		<>
 			<Header />
-			<SBody>
-				<SideBar />
-				<Contents />
-			</SBody>
+			<Body />
 		</>
 	);
 };
-
-const SBody = styled.div`
-	width: 100%;
-	height: calc(100vw - 32px);
-	border: 2px solid green;
-	display: flex;
-	flex-direction: row;
-`;
