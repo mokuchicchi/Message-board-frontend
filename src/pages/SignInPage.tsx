@@ -65,7 +65,7 @@ const SSignInFrame = styled.div`
 `;
 
 const SSignInRow = styled.div`
-	display: inline-block;
+	display: block;
 	width: auto;
 	margin-top: 4px;
 	margin-bottom: 4px;
