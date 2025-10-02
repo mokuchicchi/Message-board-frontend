@@ -71,4 +71,8 @@ const SSideBarButton = styled.button`
 	border-radius: 8px;
 	color: white;
 	background-color: black;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.8;
+	}
 `;
