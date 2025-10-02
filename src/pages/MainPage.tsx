@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 
 export const MainPage = () => {
 	const { userInfo } = useContext(UserContext);
-	const loggedIn = userInfo.token !== '';
+	const loggedIn = !!userInfo.token;
 	console.log('loggedIn', loggedIn);
 
 	return <PostListProvider>{loggedIn ? <Layout /> : <Navigate replace to='/' />}</PostListProvider>;
