@@ -1,35 +1,70 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { sign_in } from '../api/Auth';
 import { UserContext } from '../prviders/UserProvider';
+import { createUser } from '../api/User';
+import {
+	SLeftButton,
+	SRightButton,
+	SSignInFrame,
+	SSignInInput,
+	SSignInLabel,
+	SSignInRow,
+} from '../styles/PageStyles';
 
 export const SignInPage = () => {
-	const [userId, setUserId] = useState('');
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
+	const [errors, setErrors] = useState<string[]>([]);
 	const navigation = useNavigate();
 	const { setUserInfo } = useContext(UserContext);
+	const [isSigningUp, setIsSigningUp] = useState(false);
 
-	const onSingnInClick = async () => {
-		const ret = await sign_in(userId, password);
+	const onClickSingnIn = async () => {
+		const ret = await sign_in(name, password);
 		if (ret && ret.token) {
-			setUserInfo({ token: ret.token, id: ret.user_id });
+			setUserInfo({ uuid: ret.uuid, token: ret.token });
 			navigation('/main');
+		} else {
+			setError(ret.message);
 		}
 	};
 
-	return (
+	const onClickCreateAccount = () => {
+		setIsSigningUp(true);
+		setError('');
+	};
+
+	const onClickSignUp = async () => {
+		const ret = await createUser(name, email, password);
+		if (!ret || ret.length === 0) {
+			setIsSigningUp(false);
+			setErrors([]);
+		} else {
+			setErrors(ret);
+		}
+	};
+
+	const onClickGoBack = () => {
+		setIsSigningUp(false);
+		setErrors([]);
+	};
+
+	return !isSigningUp ? (
 		<SSignInFrame>
 			<SSignInRow>
 				<SSignInLabel>
-					<label htmlFor='id'>ID</label>
+					<label htmlFor='id'>Name</label>
 				</SSignInLabel>
 				<SSignInInput>
 					<input
 						id='id'
-						value={userId}
+						value={name}
 						type='text'
-						onChange={(evt) => setUserId(evt.target.value)}
+						onChange={(evt) => setName(evt.target.value)}
+						className='pl-1'
 					/>
 				</SSignInInput>
 			</SSignInRow>
@@ -43,55 +78,85 @@ export const SignInPage = () => {
 						value={password}
 						type='text'
 						onChange={(evt) => setPassword(evt.target.value)}
+						className='pl-1'
+					/>
+				</SSignInInput>
+			</SSignInRow>
+			{error ? (
+				<SSignInRow>
+					<div className='text-red-500'>{error}</div>
+				</SSignInRow>
+			) : (
+				<></>
+			)}
+			<SSignInRow>
+				<SLeftButton onClick={onClickCreateAccount}>Create Account</SLeftButton>
+				<SRightButton type='button' onClick={onClickSingnIn}>
+					Login
+				</SRightButton>
+			</SSignInRow>
+		</SSignInFrame>
+	) : (
+		<SSignInFrame>
+			<SSignInRow>
+				<SSignInLabel>
+					<label htmlFor='id'>Name</label>
+				</SSignInLabel>
+				<SSignInInput>
+					<input
+						id='id'
+						value={name}
+						type='text'
+						onChange={(evt) => setName(evt.target.value)}
+						className='pl-1'
 					/>
 				</SSignInInput>
 			</SSignInRow>
 			<SSignInRow>
-				<SLoginButton type='button' onClick={onSingnInClick}>
-					Login
-				</SLoginButton>
+				<SSignInLabel>
+					<label htmlFor='password'>Email</label>
+				</SSignInLabel>
+				<SSignInInput>
+					<input
+						id='email'
+						value={email}
+						type='text'
+						onChange={(evt) => setEmail(evt.target.value)}
+						className='pl-1'
+					/>
+				</SSignInInput>
+			</SSignInRow>
+			<SSignInRow>
+				<SSignInLabel>
+					<label htmlFor='password'>Password</label>
+				</SSignInLabel>
+				<SSignInInput>
+					<input
+						id='password'
+						value={password}
+						type='text'
+						onChange={(evt) => setPassword(evt.target.value)}
+						className='pl-1'
+					/>
+				</SSignInInput>
+			</SSignInRow>
+			{errors ? (
+				errors.map((error) => (
+					<SSignInRow key={error}>
+						<div className='text-red-500'>{error}</div>
+					</SSignInRow>
+				))
+			) : (
+				<></>
+			)}
+			<SSignInRow>
+				<SLeftButton type='button' onClick={onClickGoBack}>
+					Go Back
+				</SLeftButton>
+				<SRightButton type='button' onClick={onClickSignUp}>
+					Sign Up
+				</SRightButton>
 			</SSignInRow>
 		</SSignInFrame>
 	);
 };
-
-const SSignInFrame = styled.div`
-	background-color: #f8f8f8;
-	margin: 80px;
-	padding-top: 8px;
-	padding-bottom: 8px;
-	border-radius: 8px;
-	box-shadow: 0 8px 8px #aaaaaa;
-`;
-
-const SSignInRow = styled.div`
-	display: block;
-	width: auto;
-	margin-top: 4px;
-	margin-bottom: 4px;
-`;
-
-const SSignInLabel = styled.span`
-	display: inline-block;
-	width: 80px;
-	vertical-align: top;
-	text-align: right;
-	margin-right: 8px;
-`;
-
-const SSignInInput = styled.span`
-	display: inline-block;
-	width: auto;
-	vertical-align: top;
-`;
-
-const SLoginButton = styled.button`
-	background-color: #444444;
-	color: #f0f0f0;
-	padding: 4px 16px;
-	border-radius: 8px;
-	&:hover {
-		cursor: pointer;
-		opacity: 0.8;
-	}
-`;

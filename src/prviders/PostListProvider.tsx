@@ -1,17 +1,21 @@
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
 
 export type PostType = {
 	id: number;
-	user_name: string;
+	username: string;
 	content: string;
-	created_at: string;
+	createdat: string;
 };
 
 export const PostListContext = createContext(
 	{} as { postList: PostType[]; setPostList: Dispatch<SetStateAction<PostType[]>> }
 );
 
-export const PostListProvider = (props: any) => {
+type PropsType = {
+	children: ReactNode;
+};
+
+export const PostListProvider = (props: PropsType) => {
 	const { children } = props;
 	const [postList, setPostList] = useState<PostType[]>([]);
 

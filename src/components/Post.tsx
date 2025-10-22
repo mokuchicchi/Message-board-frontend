@@ -1,18 +1,21 @@
 import React, { ReactNode } from 'react';
-import styled from 'styled-components';
+import { PostType } from '../prviders/PostListProvider';
 
-export const Post = (props: any) => {
+import { SDate, SUserName, SPost } from '../styles/ComponentStyles';
+import { format } from 'date-fns';
+import { ja } from 'date-fns/locale';
+
+type PropsType = {
+	post: PostType;
+};
+
+export const Post = (props: PropsType) => {
 	const { post } = props;
-	const date = new Date(post.created_at);
+	const date = new Date(post.createdat);
 
 	const getDateStr = (dateObj: Date) => {
-		const year = dateObj.getFullYear();
-		const month = dateObj.getMonth() + 1;
-		const date = dateObj.getDate();
-		const hour = dateObj.getHours();
-		const min = dateObj.getMinutes();
-		const sec = dateObj.getSeconds();
-		return `${year}年${month}月${date}日 ${hour}時${min}分${sec}秒`;
+		const jstDate = new Date(dateObj.getTime() + 9 * 60 * 60 * 1000);
+		return format(jstDate, 'yyyy年M月d日 HH時mm分ss秒', { locale: ja });
 	};
 
 	const getLines = (src: string): ReactNode => {
@@ -28,33 +31,11 @@ export const Post = (props: any) => {
 
 	return (
 		<SPost>
-			<STag>
-				<SName>{post.user_name}</SName>
+			<div className='flex'>
+				<SUserName>{post.username}</SUserName>
 				<SDate>{getDateStr(date)}</SDate>
-			</STag>
+			</div>
 			<div>{getLines(post.content)}</div>
 		</SPost>
 	);
 };
-
-const SPost = styled.div`
-	margin: 8px 0px;
-	border-bottom: 1px solid #aaa;
-	text-align: left;
-	padding-left: 8px;
-`;
-
-const STag = styled.div`
-	display: flex;
-`;
-
-const SName = styled.div`
-	font-size: small;
-	color: #000044;
-`;
-
-const SDate = styled.div`
-	margin-left: 8px;
-	font-size: small;
-	color: #000044;
-`;

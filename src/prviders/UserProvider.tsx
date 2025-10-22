@@ -1,7 +1,7 @@
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
 
 type UserInfo = {
-	id: number;
+	uuid: string;
 	token: string;
 };
 
@@ -9,9 +9,13 @@ export const UserContext = createContext(
 	{} as { userInfo: UserInfo; setUserInfo: Dispatch<SetStateAction<UserInfo>> }
 );
 
-export const UserProvider = (props: any) => {
+type PropsType = {
+	children: ReactNode;
+};
+
+export const UserProvider = (props: PropsType) => {
 	const { children } = props;
-	const [userInfo, setUserInfo] = useState({ token: '', id: 0 });
+	const [userInfo, setUserInfo] = useState({ uuid: '', token: '' });
 
 	return <UserContext.Provider value={{ userInfo, setUserInfo }}>{children}</UserContext.Provider>;
 };

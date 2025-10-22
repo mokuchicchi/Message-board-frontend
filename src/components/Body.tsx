@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { Contents } from './Contents';
 import { SideBar } from './SideBar';
+import { SBody } from '../styles/ComponentStyles';
 
 export const Body = () => {
 	return (
@@ -10,10 +10,3 @@ export const Body = () => {
 		</SBody>
 	);
 };
-
-const SBody = styled.div`
-	width: 100%;
-	height: calc(100vh - 54px);
-	display: flex;
-	flex-direction: row;
-`;
