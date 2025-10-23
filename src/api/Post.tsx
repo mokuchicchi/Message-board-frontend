@@ -13,3 +13,8 @@ export const getList = async (token: string) => {
 	const res = await axios.get(url);
 	return res.data;
 };
+
+export const deletePost = async (token: string, id: number) => {
+	const url = `${process.env.REACT_APP_BACK_ADRESS}/post?token=${token}&id=${id}`;
+	const res = await axios.delete(url);
+};

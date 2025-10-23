@@ -2,6 +2,7 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 're
 
 export type PostType = {
 	id: number;
+	uuid: string;
 	username: string;
 	content: string;
 	createdat: string;

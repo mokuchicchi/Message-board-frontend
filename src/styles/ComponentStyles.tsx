@@ -59,6 +59,8 @@ export const SLogout = styled.div`
 // Post
 
 export const SPost = styled.div`
+	display: flex;
+	justify-content: space-between;
 	margin: 0.5rem 0rem;
 	border-bottom: 0.1rem solid #aaa;
 	text-align: left;
@@ -77,13 +79,39 @@ export const SDate = styled.div`
 	color: #000044;
 `;
 
+export const SDeleteButton = styled.button`
+	width: 3rem;
+	height: 2.5rem;
+	margin-right: 1rem;
+	border-radius: 0.5rem;
+	color: white;
+	background-color: gray;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.8;
+	}
+`;
+
 // PostList
 
 export const SPostList = styled.div`
 	background-color: white;
-	height: calc(100% - 2rem);
+	height: calc(100% - 5rem);
 	margin: 1rem 0.5rem;
 	overflow-y: scroll;
+`;
+
+export const SReloadButton = styled.button`
+	width: 20%;
+	height: 2.5rem;
+	padding: 0.25rem;
+	border-radius: 0.5rem;
+	color: white;
+	background-color: #b7972d;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.8;
+	}
 `;
 
 // SideBar

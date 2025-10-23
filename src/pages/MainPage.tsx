@@ -8,5 +8,5 @@ export const MainPage = () => {
 	const { userInfo } = useContext(UserContext);
 	const loggedIn = !!userInfo.token;
 
-	return <PostListProvider>{loggedIn ? <Layout /> : <Navigate replace to='/' />}</PostListProvider>;
+	return loggedIn ? <Layout /> : <Navigate replace to='/' />;
 };
