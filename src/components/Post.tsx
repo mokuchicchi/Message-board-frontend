@@ -14,8 +14,7 @@ export const Post = (props: PropsType) => {
 	const date = new Date(post.createdat);
 
 	const getDateStr = (dateObj: Date) => {
-		const jstDate = new Date(dateObj.getTime() + 9 * 60 * 60 * 1000);
-		return format(jstDate, 'yyyy年M月d日 HH時mm分ss秒', { locale: ja });
+		return format(dateObj, 'yyyy年M月d日 HH時mm分ss秒', { locale: ja });
 	};
 
 	const getLines = (src: string): ReactNode => {
