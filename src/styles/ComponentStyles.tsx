@@ -24,7 +24,7 @@ export const SHeader = styled.div`
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	height: 3.5;
+	height: 3.5rem;
 `;
 
 export const SLogo = styled.div`

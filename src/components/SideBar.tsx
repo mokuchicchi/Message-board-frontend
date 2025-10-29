@@ -12,14 +12,14 @@ export const SideBar = () => {
 	const { userInfo } = useContext(UserContext);
 	const { setPostList } = useContext(PostListContext);
 
-	const myGetUser = async () => {
+	const fetchCurrentUser = async () => {
 		const user = await getUser(userInfo.uuid, userInfo.token);
 		setUserName(user.name);
 		setUserEmail(user.email);
 	};
 
 	useEffect(() => {
-		myGetUser();
+		fetchCurrentUser();
 	}, []);
 
 	const getPostList = async () => {

@@ -24,15 +24,14 @@ export const createUser = async (name: string, email: string, password: string) 
 	};
 	const url = `${process.env.REACT_APP_BACK_ADRESS}/user`;
 
-	let japaneseErrors: Array<string> = [];
 	try {
 		const res = await axios.post(url, data);
-		return japaneseErrors;
+		return null;
 	} catch (err) {
 		if (axios.isAxiosError(err)) {
 			if (err.response && err.response.data && err.response.data.errors) {
 				const errors: string[] = err.response.data.errors;
-				japaneseErrors = errors.map((e) => errorMap[e] || e);
+				const japaneseErrors = errors.map((e) => errorMap[e] || e);
 				return japaneseErrors;
 			}
 		}

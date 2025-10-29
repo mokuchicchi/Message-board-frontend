@@ -34,7 +34,7 @@ export const PostList = () => {
 		setFetch(false);
 	}, [fetch]);
 
-	const onclickReload = () => {
+	const onClickReload = () => {
 		setFetch(true);
 	};
 
@@ -45,7 +45,7 @@ export const PostList = () => {
 					<Post key={post.id} id={post.id} post={post} />
 				))}
 			</SPostList>
-			<SReloadButton onClick={onclickReload}>読み込み</SReloadButton>
+			<SReloadButton onClick={onClickReload}>読み込み</SReloadButton>
 		</>
 	);
 };

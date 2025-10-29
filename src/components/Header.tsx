@@ -9,13 +9,13 @@ export const Header = () => {
 	const [userName, setUserName] = useState('');
 	const { userInfo, setUserInfo } = useContext(UserContext);
 
-	const myGetUser = async () => {
+	const fetchCurrentUser = async () => {
 		const user = await getUser(userInfo.uuid, userInfo.token);
 		setUserName(user.name);
 	};
 
 	useEffect(() => {
-		myGetUser();
+		fetchCurrentUser();
 	}, []);
 
 	const onClickLogout = () => {

@@ -39,7 +39,7 @@ export const SignInPage = () => {
 
 	const onClickSignUp = async () => {
 		const ret = await createUser(name, email, password);
-		if (!ret || ret.length === 0) {
+		if (!ret) {
 			setIsSigningUp(false);
 			setErrors([]);
 		} else {

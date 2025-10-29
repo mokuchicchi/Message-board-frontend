@@ -34,7 +34,7 @@ export const Post = (props: PropsType) => {
 		});
 	};
 
-	const haveAuth = userInfo.uuid === post.uuid;
+	const hasAuth = userInfo.uuid === post.uuid;
 
 	const onClickDeletePost = () => {
 		deletePost(userInfo.token, id);
@@ -50,7 +50,7 @@ export const Post = (props: PropsType) => {
 				</div>
 				<div>{getLines(post.content)}</div>
 			</div>
-			{haveAuth ? <SDeleteButton onClick={onClickDeletePost}>削除</SDeleteButton> : <></>}
+			{hasAuth ? <SDeleteButton onClick={onClickDeletePost}>削除</SDeleteButton> : <></>}
 		</SPost>
 	);
 };
