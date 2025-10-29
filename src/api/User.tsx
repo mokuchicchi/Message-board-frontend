@@ -26,7 +26,7 @@ export const createUser = async (name: string, email: string, password: string) 
 
 	try {
 		const res = await axios.post(url, data);
-		return null;
+		return undefined;
 	} catch (err) {
 		if (axios.isAxiosError(err)) {
 			if (err.response && err.response.data && err.response.data.errors) {
