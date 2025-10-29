@@ -6,12 +6,14 @@ export const SBody = styled.div`
 	height: calc(100vh - 3.5rem);
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 `;
 
 // Content
 
 export const SContents = styled.div`
-	width: 80%;
+	flex: 1 1 70%;
+	width: 100%;
 	height: 100%;
 	background-color: aliceblue;
 	padding: 0.5rem;
@@ -80,7 +82,7 @@ export const SDate = styled.div`
 `;
 
 export const SDeleteButton = styled.button`
-	width: 3rem;
+	min-width: 3rem;
 	height: 2.5rem;
 	margin-right: 1rem;
 	border-radius: 0.5rem;
@@ -102,7 +104,7 @@ export const SPostList = styled.div`
 `;
 
 export const SReloadButton = styled.button`
-	width: 20%;
+	min-width: 20%;
 	height: 2.5rem;
 	padding: 0.25rem;
 	border-radius: 0.5rem;
@@ -117,7 +119,8 @@ export const SReloadButton = styled.button`
 // SideBar
 
 export const SSidebar = styled.div`
-	width: 25rem;
+	flex: 1 1 30%;
+	width: 100%;
 	height: 100%;
 	padding: 0.5rem;
 	background-color: lightblue;
@@ -140,6 +143,7 @@ export const SSideBarTextArea = styled.textarea`
 
 export const SSideBarButton = styled.button`
 	width: 100%;
+	max-width: 24rem;
 	height: 2rem;
 	padding: 0.25rem;
 	border-radius: 0.5rem;
